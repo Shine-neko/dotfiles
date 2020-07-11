@@ -1,0 +1,10 @@
+alias composer='~/Workspace/dotfiles/.bin/composer'
+alias php='docker run --rm -v $(pwd):/app -w /app php php'
+alias phpstan='docker run --rm -v $(pwd):/app -w /app phpstan/phpstan'
+alias sf='docker-compose run --rm php bin/console'
+alias cargo='docker run -e USER=root --rm -v $(pwd):/app -w /app cargo cargo'
+alias go='docker run --rm -v $(pwd):/app -w /app golang go'
+alias proxy='cd ~/Workspace/craft/infra/proxy && docker-compose up -d'
+alias deno='docker run -it -v $(pwd):/app -w /app barrage/deno deno'
+alias pgcli='docker run -it --rm dencold/pgcli'
+
