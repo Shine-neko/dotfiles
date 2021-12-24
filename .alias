@@ -1,5 +1,5 @@
 alias composer='~/Workspace/dotfiles/.bin/composer'
-alias php='docker run --rm -v $(pwd):/app -w /app php php'
+alias php='docker run --rm -v $(pwd):/app -w /app shineneko/php php'
 alias phpstan='docker run --rm -v $(pwd):/app -w /app phpstan/phpstan'
 alias sf='docker-compose run --rm php bin/console'
 alias cargo='docker run -e USER=root --rm -v $(pwd):/app -w /app rust cargo'
