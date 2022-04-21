@@ -1,3 +1,4 @@
+alias vim='nvim'
 alias composer='~/Workspace/dotfiles/.bin/composer'
 alias php='docker run --rm -v $(pwd):/app -w /app shineneko/php php'
 alias phpstan='docker run --rm -v $(pwd):/app -w /app phpstan/phpstan'
