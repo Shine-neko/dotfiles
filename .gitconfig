@@ -1,5 +1,8 @@
+[include]
+	path = ~/.gitconfig_secret
+
 [core]
-	excludesfile = /home/nawo/.gitignore
+	excludesfile = ~/.gitignore
 	editor = nvim
 [alias]
 	oops = commit --amend --no-edit
@@ -10,4 +13,6 @@
   	prune = true
 [commit]
 	verbose = true
+[rerere]
+	enabled = true
 
