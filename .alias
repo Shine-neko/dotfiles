@@ -10,3 +10,5 @@ alias deno='docker run -it -v $(pwd):/app -w /app barrage/deno deno'
 alias pgcli='docker run -it --rm dencold/pgcli'
 alias fabric='docker run -e USER=root --rm -v $(pwd):/app -w /app fabric fab'
 alias ansible='~/Workspace/dotfiles/.bin/ansible'
+alias ring='~/Workspace/kemeter/ring/target/release/ring'
+
