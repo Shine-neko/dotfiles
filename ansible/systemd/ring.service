@@ -1,0 +1,16 @@
+[Unit]
+Description=Ring service
+
+After=network-online.target firewalld.service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ring server:start
+RestartSec=2
+Restart=always
+Environment="RUST_LOG=debug"
+Environment="RING_CONFIG_DIR=/home/debian/.config/kemeter/ring"
+Environment="RING_DATABASE_PATH=/home/debian/.config/kemeter/ring/ring.db"
+
+[Install]
+WantedBy=multi-user.target

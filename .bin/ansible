@@ -1,1 +1,1 @@
-docker run --rm -v $(pwd):/app -w /app ansible ansible $1
+docker run --rm -e ANSIBLE_INVENTORY=/app/hosts -v ~/.ssh:/root/.ssh -v $(pwd):/app -w /app ansible ansible $1

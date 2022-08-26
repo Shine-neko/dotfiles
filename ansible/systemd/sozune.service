@@ -1,0 +1,15 @@
+[Unit]
+Description=Sozune service
+
+After=network-online.target firewalld.service
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/sozune
+RestartSec=2
+Restart=always
+Environment="SOZUNE_CONFIG_FILE=/etc/sozune/config.toml"
+Environment="RUST_LOG=debug"
+
+[Install]
+WantedBy=multi-user.target

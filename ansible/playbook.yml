@@ -1,0 +1,73 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Install Packages
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'vim', 'ca-certificates', 'curl', 'gnupg', 'lsb-release']
+      tags: [ 'setup' ]
+
+    - name: Add Docker GPG Key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+      tags: [ 'setup' ]
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+      become: true
+      tags: [ 'setup' ]
+
+    - name: Install Docker
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+      tags: [ 'setup' ]
+
+    # - name: Copy Sozune
+    #   become: true
+    #   copy:
+    #     src: /home/nawo/Workspace/kemeter/sozune/target/release/sozune
+    #     dest: /usr/bin/sozune
+
+    - name: Change Permission
+      become: true
+      shell: chmod +x /usr/bin/sozune
+
+    - name: Copy sozune systemd configuration
+      become: true
+      copy:
+        src: /home/nawo/Workspace/dotfiles/ansible/systemd/sozune.service
+        dest: /lib/systemd/system/sozune.service
+
+    - name: Copy Ring
+      become: true
+      copy:
+        src: /home/nawo/Workspace/kemeter/ring/target/release/ring
+        dest: /usr/bin/ring
+
+    - name: Change Ring Permission
+      become: true
+      shell: chmod +x /usr/bin/ring
+
+    - name: Copy ring systemd configuration
+      become: true
+      copy:
+        src: /home/nawo/Workspace/dotfiles/ansible/systemd/ring.service
+        dest: /lib/systemd/system/ring.service
+
+    - name: Reload systemd daemon
+      become: true
+      command: systemctl daemon-reload
+
+    - name: Start sozune
+      become: true
+      service:
+        name: sozune
+        state: restarted
+        enabled: true
+
+    - name: Start ring
+      become: true
+      service:
+        name: ring
+        state: restarted
+        enabled: true
