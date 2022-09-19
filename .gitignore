@@ -1,3 +1,5 @@
 /ansible/.vagrant/
 ansible/inventory
+.idea
+node_modules
 
