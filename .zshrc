@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 source $HOME/Workspace/dotfiles/.alias
+source $HOME/Workspace/dotfiles/.secrets
+export YARN_PATH="$HOME/.yarn/bin"
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$YARN_PATH:$BUN_INSTALL/bin:$PATH"
 
