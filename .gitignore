@@ -2,4 +2,4 @@
 ansible/inventory
 .idea
 node_modules
-
+.secrets
