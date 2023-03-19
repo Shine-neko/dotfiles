@@ -103,4 +103,4 @@ source $HOME/Workspace/dotfiles/.secrets
 export YARN_PATH="$HOME/.yarn/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$YARN_PATH:$BUN_INSTALL/bin:$PATH"
-
+export DOCKER_COMPOSE_BIN="docker compose"
