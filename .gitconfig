@@ -20,3 +20,6 @@
 	autoSetupRemote = true
 [rebase]
 	updateRefs = true
+[user]
+	email = mlanawo.mbechezi@alpacode.io
+	name = Mlanawo MBECHEZI
