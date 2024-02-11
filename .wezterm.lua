@@ -7,14 +7,14 @@ return {
   keys = {
     -- This will create a new split and run the `top` program inside it
     {
-      key = 'e',
+      key = 'o',
       mods = 'CTRL|SHIFT',
       action = wezterm.action.SplitVertical {
         domain = 'CurrentPaneDomain'
       },
     },
     {
-        key = 'o',
+        key = 'e',
         mods = 'CTRL|SHIFT',
         action = wezterm.action.SplitHorizontal {
           domain = 'CurrentPaneDomain'
