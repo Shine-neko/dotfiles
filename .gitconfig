@@ -6,7 +6,7 @@
 	editor = nvim
 [alias]
 	oops = commit --amend --no-edit
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %ae' --abbrev-commit --
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an> %C(bold cyan)<%ce>%Creset' --abbrev-commit --
 [init]
 	defaultBranch = main
 [fetch]
@@ -23,3 +23,7 @@
 [user]
 	email = mlanawo.mbechezi@alpacode.io
 	name = Mlanawo MBECHEZI
+	signingkey = 8D3421ACFB8D3953
+[credential "https://maurice.happyview.fr"]
+	helper = 
+	helper = !/usr/bin/glab auth git-credential
