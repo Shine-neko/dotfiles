@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Configuration SSH par défaut
+SSH_USER="nawo"
+SSH_PORT="22"
+SSH_DNS="nas"
+
+# Exclusions
+EXCLUDES=(
+  "node_modules"
+  "vendor"
+  "target"
+)
+
+# Convertir les exclusions en options rsync
+RSYNC_EXCLUDES=""
+for EXCLUDE in "${EXCLUDES[@]}"; do
+  RSYNC_EXCLUDES+="--exclude=${EXCLUDE} "
+done
+
+# Fonction pull
+pull() {
+  local REMOTE_PATH="/share/Public/Workspace/$1"
+  local LOCAL_PATH=$2
+  echo "Pulling from ${SSH_USER}@${SSH_DNS}:${REMOTE_PATH} to ${LOCAL_PATH}"
+  rsync -avz -e "ssh -p ${SSH_PORT}" ${RSYNC_EXCLUDES} "${SSH_USER}@${SSH_DNS}:${REMOTE_PATH}/" "${LOCAL_PATH}/" &
+  wait $!
+  echo "Pull completed"
+}
+
+# Fonction push
+push() {
+  #printf "Attention, cette commande va écraser les fichiers distants. Continuer ? (y/n) "
+  #read -r CONTINUE
+  local LOCAL_PATH=$1
+  local REMOTE_PATH="/share/Public/Workspace/$2"
+  echo "$REMOTE_PATH"
+  echo "Pushing from ${LOCAL_PATH} to ${SSH_USER}@${SSH_DNS}:${REMOTE_PATH}"
+  rsync -avz -e "ssh -p ${SSH_PORT}" ${RSYNC_EXCLUDES} "${LOCAL_PATH}/" "${SSH_USER}@${SSH_DNS}:${REMOTE_PATH}/" &
+  wait $!
+  echo "Push completed"
+}
+
+# Gestion des commandes
+case "$1" in
+  pull)
+    if [ -z "$2" ] || [ -z "$3" ]; then
+      echo "Usage: $0 pull <remote_path> <local_path>"
+      exit 1
+    fi
+    pull $2 $3
+    ;;
+  push)
+    if [ -z "$2" ] || [ -z "$3" ]; then
+      echo "Usage: $0 push <local_path> <remote_path>"
+      exit 1
+    fi
+    push $2 $3
+    ;;
+  *)
+    echo "Usage: $0 {pull|push} <source_path> <destination_path>"
+    exit 1
+esac
