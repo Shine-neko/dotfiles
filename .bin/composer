@@ -1,9 +1,10 @@
+#!/bin/bash
 
-docker-compose ps php > /dev/null                                         
+docker compose ps php > /dev/null
 
 if [ "$?" -eq "0" ] 
 then
-  docker-compose run --rm php composer $1 
+  docker compose run --rm php composer $1
 else 
   docker run --rm -v $(pwd):/app -v ~/.composer:/root/.composer -w /app shineneko/php composer $1
 fi
