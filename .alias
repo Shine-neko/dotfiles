@@ -12,5 +12,7 @@ alias pgcli='docker run -it --rm dencold/pgcli'
 alias fabric='docker run -e USER=root --rm -v $(pwd):/app -w /app fabric fab'
 alias ansible='~/Workspace/dotfiles/.bin/ansible'
 alias ring='~/Workspace/kemeter/ring/target/release/ring'
+alias kemeter='~/Workspace/kemeter/kemeter/cli/target/release/kemeter'
 alias cat='/usr/bin/batcat'
 alias chat='\cat'
+alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive"
