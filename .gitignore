@@ -4,3 +4,4 @@ ansible/inventory
 node_modules
 .phpunit.cache/
 .secrets
+.castor.stub.php
