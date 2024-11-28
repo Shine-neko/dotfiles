@@ -108,3 +108,11 @@ export DOCKER_COMPOSE_BIN="docker compose"
 export CASTOR_PLUGINS_PATH="$HOME/Workspace/alpacode/devtools/castor-plugins"
 export KEMETER_PATH="$HOME/Workspace/kemeter/kemeter/cli/target/release/kemeter"
 source "$HOME/.cargo/env"
+
+PROMPT='%F{green}%n%f@%F{blue}%m%f %F{yellow}%1~%f %# '
+
+# bun completions
+[ -s "/home/nawo/.bun/_bun" ] && source "/home/nawo/.bun/_bun"
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"
