@@ -109,7 +109,7 @@ export CASTOR_PLUGINS_PATH="$HOME/Workspace/alpacode/devtools/castor-plugins"
 export KEMETER_PATH="$HOME/Workspace/kemeter/kemeter/cli/target/release/kemeter"
 source "$HOME/.cargo/env"
 
-PROMPT='%F{green}%n%f@%F{blue}%m%f %F{yellow}%1~%f %# '
+PROMPT='%F{green}%n%f@%F{blue}%m%f %(?:%{[01;32m%}%1{➜%} :%{[01;31m%}%1{➜%} ) %{[36m%}%c%{[00m%} $(git_prompt_info)'
 
 # bun completions
 [ -s "/home/nawo/.bun/_bun" ] && source "/home/nawo/.bun/_bun"
