@@ -109,6 +109,7 @@ export CASTOR_PLUGINS_PATH="$HOME/Workspace/alpacode/devtools/castor-plugins"
 export KEMETER_PATH="$HOME/Workspace/kemeter/kemeter/cli/target/release/kemeter"
 source "$HOME/.cargo/env"
 
+export FORCE_DOCKER=true
 export ANDROID_HOME=$HOME/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$HOME/Android/Sdk/platform-tools:$PATH
