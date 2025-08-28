@@ -1,1 +1,33 @@
-docker run --rm -e ANSIBLE_INVENTORY=/app/inventory -v ~/.ssh:/root/.ssh -v $(pwd):/app -w /app ansible ansible "$@"
+#!/bin/bash
+
+cmd="$1"
+shift
+
+ANSIBLE_INVENTORY_FILE=${ANSIBLE_INVENTORY_FILE:-inventory}
+
+# Vérifier si le fichier d'inventaire existe
+if [ ! -f "$ANSIBLE_INVENTORY_FILE" ]; then
+    echo "❌ Error: Inventory file '$ANSIBLE_INVENTORY_FILE' does not exist"
+    echo "💡 Make sure you're in a directory containing an inventory file"
+    echo "💡 Or specify the correct file with ANSIBLE_INVENTORY_FILE=your_file"
+    exit 1
+fi
+
+SSHPASS_MOUNT=""
+if command -v sshpass >/dev/null 2>&1; then
+    SSHPASS_MOUNT="-v $(which sshpass):/usr/bin/sshpass"
+fi
+
+echo "📋 Using inventory file: $ANSIBLE_INVENTORY_FILE"
+
+# Exécuter la commande Ansible correspondante dans Docker
+docker run --rm \
+    --network host \
+    -e ANSIBLE_INVENTORY="/app/ansible_inventory" \
+    -e ANSIBLE_HOST_KEY_CHECKING=False \
+    -v ~/.ssh:/root/.ssh \
+    -v $(pwd):/app \
+    -v "$(pwd)/$ANSIBLE_INVENTORY_FILE:/app/ansible_inventory" \
+    $SSHPASS_MOUNT \
+    -w /app \
+    ansible "$cmd" "$@"
