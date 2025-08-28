@@ -16,3 +16,5 @@ alias kemeter='~/Workspace/kemeter/kemeter/cli/target/release/kemeter'
 alias cat='/usr/bin/batcat'
 alias chat='\cat'
 alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock wagoodman/dive"
+alias clip="wl-copy <"
+alias cb="wl-copy <"
